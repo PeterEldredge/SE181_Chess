@@ -89,7 +89,7 @@ public class Tile : MonoBehaviour
         {
             mousePoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            CurrentPiece.transform.position = new Vector3(mousePoint.x, mousePoint.y, piecePosition.z) + offset; 
+            CurrentPiece.transform.position = new Vector3(mousePoint.x, mousePoint.y, piecePosition.z) - offset; 
 
             yield return null;
         }

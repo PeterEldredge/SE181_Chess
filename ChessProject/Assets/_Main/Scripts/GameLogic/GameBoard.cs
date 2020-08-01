@@ -9,7 +9,7 @@ public class GameBoard : MonoBehaviour
     public const float TILE_SPACING = 1.4f;
 
     public static Vector3 PIECE_ADJUSTMENT { get; private set; } = new Vector3(0f, -.5f, 0f);
-    public static Vector3 STARTING_POSITION { get; private set; } = new Vector3(-4f, -4.5f, 0f);
+    public static Vector3 STARTING_POSITION { get; private set; } = new Vector3(-5f, -5f, 0f);
 
     #region Inspector
 
