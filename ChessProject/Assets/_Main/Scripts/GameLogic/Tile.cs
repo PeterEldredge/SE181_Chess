@@ -62,10 +62,6 @@ public class Tile : MonoBehaviour
         {
             _gameBoard.Move((Move) _selectableMove);
         }
-        else
-        {
-            _gameBoard.ClearBoard();
-        }
     }
 
     private void OnMouseDown()
@@ -82,13 +78,18 @@ public class Tile : MonoBehaviour
     {
         Vector3 piecePosition = CurrentPiece.transform.position;
 
-        Vector3 mousePoint;
+        Vector3 mousePoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        Vector3 offset = new Vector3(
+            mousePoint.x - CurrentPiece.transform.position.x,
+            mousePoint.y - CurrentPiece.transform.position.y,
+            0f);
 
         while(Input.GetMouseButton(0) && CurrentPiece)
         {
             mousePoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            CurrentPiece.transform.position = new Vector3(mousePoint.x, mousePoint.y, piecePosition.z); 
+            CurrentPiece.transform.position = new Vector3(mousePoint.x, mousePoint.y, piecePosition.z) - offset; 
 
             yield return null;
         }
