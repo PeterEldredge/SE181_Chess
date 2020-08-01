@@ -18,7 +18,7 @@ public class Tile : MonoBehaviour
     private bool _selectable;
     private Move? _selectableMove;
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         _gameBoard = FindObjectOfType<GameBoard>();
     }

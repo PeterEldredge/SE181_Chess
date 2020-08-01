@@ -134,7 +134,7 @@ public class GameBoard : MonoBehaviour
     private void SetPiece(GameObject prefab, Vector2Int coordinates)
     {
         GameObject pieceObject = Instantiate(prefab, _pieceHolder.transform);
-        Tile tile = GetTile(coordinates);
+        if(!GetTile(coordinates, out Tile tile)) return;
 
         //Sets the piece's transform position
         pieceObject.transform.position = tile.transform.position + PIECE_ADJUSTMENT;
@@ -171,14 +171,17 @@ public class GameBoard : MonoBehaviour
 
         foreach (Move move in moves)
         {
-            GetTile(move.EndingPos).Selectable(move);
+            if(GetTile(move.EndingPos, out Tile endingTile))
+            {
+                endingTile.Selectable(move);
+            }            
         }
     }
 
     public void Move(Move move)
     {
-        Tile startingTile = GetTile(move.StartingPos);
-        Tile endingTile = GetTile(move.EndingPos);
+        GetTile(move.StartingPos, out Tile startingTile);
+        GetTile(move.EndingPos, out Tile endingTile);
 
         startingTile.CurrentPiece.OnMove(move);
 
@@ -190,9 +193,19 @@ public class GameBoard : MonoBehaviour
 
     #region Helpers
 
-    public Tile GetTile(Vector2Int coordinates)
+    public bool GetTile(Vector2Int coordinates, out Tile tile)
     {
-        return Board[coordinates.x][coordinates.y];
+        if (coordinates.x >= 0 &&
+            coordinates.x < 8 &&
+            coordinates.y >= 0 &&
+            coordinates.y < 8)
+        {
+            tile = Board[coordinates.x][coordinates.y];
+            return true;
+        }
+
+        tile = null;
+        return false;
     }
 
     public void ApplyToEachTile(Action<Tile> action)

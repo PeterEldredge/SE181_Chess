@@ -30,7 +30,7 @@ public abstract class GamePiece : MonoBehaviour
 
     protected GameBoard _gameBoard;
 
-    protected void Awake()
+    protected virtual void Awake()
     {
         _gameBoard = GetComponentInParent<GameBoard>();
     }
@@ -45,9 +45,11 @@ public abstract class GamePiece : MonoBehaviour
         return validMoves;
     }
 
-    public void OnMove(Move move)
+    public virtual void OnMove(Move move)
     {
-        CurrentTile = _gameBoard.GetTile(move.EndingPos);
+        _gameBoard.GetTile(move.EndingPos, out Tile currentTile);
+
+        CurrentTile = currentTile;
 
         transform.position = new Vector3(
                         GameBoard.STARTING_POSITION.x + GameBoard.TILE_SPACING * move.EndingPos.x,
@@ -60,5 +62,5 @@ public abstract class GamePiece : MonoBehaviour
     protected abstract List<Move> GetStandardMoves();
 
     //Virtual
-    protected virtual List<Move> GetSpecialCaseMoves() { return new List<Move>(); }
+    protected virtual List<Move> GetSpecialCaseMoves() => new List<Move>();
 }

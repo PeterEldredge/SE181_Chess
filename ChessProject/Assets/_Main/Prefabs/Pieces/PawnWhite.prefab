@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5220516453229326355}
   - component: {fileID: 5190576879521978637}
   - component: {fileID: 5201507631942770481}
-  - component: {fileID: 5223802442095897016}
+  - component: {fileID: -3252148425768234218}
   m_Layer: 0
   m_Name: PawnWhite
   m_TagString: Untagged
@@ -80,7 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &5223802442095897016
+--- !u!114 &-3252148425768234218
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,7 +89,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5223802442095897019}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80c412efe428da54c80e7b087382ff10, type: 3}
+  m_Script: {fileID: 11500000, guid: feb6beb6b73c80643a4a036737a19b37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Color: 0
