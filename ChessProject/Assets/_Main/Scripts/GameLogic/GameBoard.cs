@@ -162,8 +162,6 @@ public class GameBoard : MonoBehaviour
             RaycastHit2D hit = Physics2D.GetRayIntersection(Camera.main.ScreenPointToRay(Input.mousePosition));
 
             if (hit) hit.transform.GetComponent<Tile>()?.TryMove();
-            
-            ClearBoard();   
         }
     }
 
@@ -186,6 +184,8 @@ public class GameBoard : MonoBehaviour
 
         endingTile.CurrentPiece = startingTile.CurrentPiece;
         startingTile.CurrentPiece = null;
+
+        ClearBoard();
     }
 
     #region Helpers
